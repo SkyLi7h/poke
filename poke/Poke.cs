@@ -54,7 +54,7 @@ namespace poke
             positionTurretList[2] = new Vector2(25, 40);
             positionTurretList[3] = new Vector2(-30, 40);
             positionTurretList[4] = new Vector2(-15, 40);
-            spaceShipsDescList.Add("test", new SpaceShipDesc("test", 5, 5, 10, 10, positionTurretList));
+            spaceShipsDescList.Add("test", new SpaceShipDesc("test", 10, 5, 10, 10, positionTurretList));
 
             FixeTurret[] fixeTurrets = new FixeTurret[10];
             fixeTurrets[1] = new FixeTurret("Canon Cat 1", "un canon", 10, 10, 0.1, 0);
