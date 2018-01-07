@@ -1,0 +1,16 @@
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/obj/x86/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/obj/x86/Release/testMonoGame.Icon.ico
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/x64/libopenal.so.1
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/x64/soft_oal.dll
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/x64/libSDL2-2.0.so.0
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/x64/SDL2.dll
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/x86/libopenal.so.1
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/x86/soft_oal.dll
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/x86/libSDL2-2.0.so.0
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/x86/SDL2.dll
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/MonoGame.Framework.dll.config
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/libopenal.1.dylib
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/libSDL2-2.0.0.dylib
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/testMonoGame.exe
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/obj/x86/Release/testMonoGame.exe
+/Users/ferrerlucas/dev/testMonoGame/testMonoGame/bin/Release/MonoGame.Framework.dll
