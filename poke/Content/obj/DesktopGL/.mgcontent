@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/dev/poke/poke/Content/test</File>
+    <File>C:/dev/pokeNew/poke/Content/test</File>
+    <File>C:/dev/pokeNew/poke/Content/fireLaserRed</File>
   </SourceFiles>
 </SourceFileCollection>

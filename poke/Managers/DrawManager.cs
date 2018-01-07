@@ -14,5 +14,10 @@ namespace poke.Managers
             spriteBatch.Draw(spaceShip.spaceShipDesc.texture, spaceShip.positionActual, null, Color.White, (float)spaceShip.angle, origin, scale, SpriteEffects.None, 0);
         }
 
+        public void drawShoot(Shoot shoot, float scale)
+        {
+            spriteBatch.Draw(shoot.texture, shoot.position, null, Color.White, (float)shoot.angle, shoot.origin, scale, SpriteEffects.None, 0);
+        }
+
     }
 }

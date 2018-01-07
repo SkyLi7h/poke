@@ -19,12 +19,12 @@ namespace poke
         SpriteBatch spriteBatch;
         Hashtable spaceShipsList = new Hashtable();
         Hashtable spaceShipsDescList = new Hashtable();
+        List<Shoot> shootList = new List<Shoot>();
         DrawManager drawManager = new DrawManager();
+        UpdateManager updateManager = new UpdateManager();
         float scale = 1F;
-
-        double angle;
-        double dX;
-        double dY;
+        MouseState previousMouseState;
+        Texture2D fireLaserRed;
 
 
 
@@ -47,12 +47,23 @@ namespace poke
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
             graphics.ToggleFullScreen();
+            previousMouseState = Mouse.GetState();
 
+            Vector2[] positionTurretList = new Vector2[10];
+            positionTurretList[1] = new Vector2(40, 40);
+            positionTurretList[2] = new Vector2(25, 40);
+            positionTurretList[3] = new Vector2(-30, 40);
+            positionTurretList[4] = new Vector2(-15, 40);
+            spaceShipsDescList.Add("test", new SpaceShipDesc("test", 5, 5, 10, 10, positionTurretList));
 
-            spaceShipsDescList.Add("test", new SpaceShipDesc("test", 5, 5, 10, 10));
+            FixeTurret[] fixeTurrets = new FixeTurret[10];
+            fixeTurrets[1] = new FixeTurret("Canon Cat 1", "un canon", 10, 10, 0.1, 0);
+            fixeTurrets[2] = new FixeTurret("Canon Cat 1", "un canon", 10, 10, 1, 0);
+            fixeTurrets[3] = new FixeTurret("Canon Cat 1", "un canon", 10, 10, 1, 0);
+            fixeTurrets[4] = new FixeTurret("Canon Cat 1", "un canon", 10, 10, 1, 0);
 
-            spaceShipsList.Add("test", new SpaceShip(1, 1, (SpaceShipDesc)spaceShipsDescList["test"], 500, 0, 0, 0, 0, new Vector2(250, 50)));
-            spaceShipsList.Add("opium", new SpaceShip(1, 1, (SpaceShipDesc)spaceShipsDescList["test"], 500, 0, 0, 0, 0, new Vector2(500, 500)));
+            spaceShipsList.Add("test", new SpaceShip(1, 1, (SpaceShipDesc)spaceShipsDescList["test"], null, fixeTurrets, 5000, 0, 0, 0, 0, new Vector2(700, 700)));
+            spaceShipsList.Add("opium", new SpaceShip(1, 1, (SpaceShipDesc)spaceShipsDescList["test"], null, null, 500, 0, 0, 0, 0, new Vector2(500, 500)));
 
             base.Initialize();
         }
@@ -72,6 +83,8 @@ namespace poke
                 SpaceShipDesc spaceShipsDesc = (SpaceShipDesc)spaceShipsDescList[spaceShipDescKey];
                 spaceShipsDesc.texture = Content.Load<Texture2D>(spaceShipsDesc.spaceShipName);
             }
+
+            fireLaserRed = Content.Load<Texture2D>("fireLaserRed");
 
             // TODO: use this.Content to load your game content here
         }
@@ -96,45 +109,17 @@ namespace poke
                 Exit();
 
             SpaceShip spaceShip = (SpaceShip)spaceShipsList["test"];
+            updateManager.updateSpaceShip(spaceShip, gameTime.ElapsedGameTime.Milliseconds);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                spaceShip.speed += spaceShip.spaceShipDesc.accelaration * (((double)(gameTime.ElapsedGameTime.Milliseconds)) / 1000);
+            if (Mouse.GetState().RightButton == ButtonState.Pressed)
+                {
+                    updateManager.addShoot(spaceShip, shootList, fireLaserRed);
+                }
 
-                if (spaceShip.speed > spaceShip.spaceShipDesc.maxSpeed)
-                    spaceShip.speed = spaceShip.spaceShipDesc.maxSpeed;
-            }
+            updateManager.updateShoot(shootList, gameTime.ElapsedGameTime.Milliseconds);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                spaceShip.speed -= spaceShip.spaceShipDesc.deceleration * (((double)(gameTime.ElapsedGameTime.Milliseconds)) / 1000);
-
-                if (spaceShip.speed < 0)
-                    spaceShip.speed = 0;
-            }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                spaceShip.rotation -= spaceShip.spaceShipDesc.speedRotation;
-            }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                spaceShip.rotation += spaceShip.spaceShipDesc.speedRotation;
-            }
-
-            angle = (float)(2 * Math.PI * (spaceShip.rotation / 360));
-
-            dX = (float)(spaceShip.speed * Math.Sin(angle) * -1);
-            dY = (float)(spaceShip.speed * Math.Cos(angle));
-
-            Vector2 positionActual = spaceShip.positionActual;
-
-            positionActual.X -= (float)dX;
-            positionActual.Y -= (float)dY;
-
-            spaceShip.angle = angle;
-            spaceShip.positionActual = positionActual;
+            //save the current mouse state for the next frame
+            previousMouseState = Mouse.GetState();         
 
             // TODO: Add your update logic here
 
@@ -158,6 +143,12 @@ namespace poke
                 SpaceShip spaceShip = (SpaceShip)spaceShipsList[spaceShipKey];
                 drawManager.drawSpaceShip(spaceShip, scale);
             }
+
+            foreach (Shoot shoot in shootList)
+            {             
+                drawManager.drawShoot(shoot, scale);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);

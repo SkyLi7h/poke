@@ -44,8 +44,13 @@
   <ItemGroup>
     <Compile Include="GameTools\TimeTools.cs" />
     <Compile Include="Managers\DrawManager.cs" />
+    <Compile Include="Managers\UpdateManager.cs" />
+    <Compile Include="Models\FixeTurret.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Shoot.cs" />
     <Compile Include="Models\SpaceShip.cs" />
     <Compile Include="Models\SpaceShipDesc.cs" />
+    <Compile Include="Models\Turret.cs" />
     <Compile Include="Poke.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
